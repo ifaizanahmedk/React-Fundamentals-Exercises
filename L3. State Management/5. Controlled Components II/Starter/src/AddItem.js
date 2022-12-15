@@ -11,8 +11,6 @@ const AddItem = ({ onAddItem }) => {
 	const addItem = (event) => {
 		event.preventDefault();
 		onAddItem(value);
-		console.log(value);
-
 		setValue("");
 	};
 
