@@ -1,10 +1,11 @@
-import PropTypes from "propTypes";
+import PropTypes from "prop-types";
+import Item from "./Item";
 
 const ItemsList = ({ items }) => {
 	return (
 		<ol className="item-list">
 			{items.map((item, index) => (
-				<li key={index}>{item}</li>
+				<Item key={index} item={item} />
 			))}
 		</ol>
 	);

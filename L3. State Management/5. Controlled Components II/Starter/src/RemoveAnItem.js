@@ -1,13 +1,13 @@
 import { useState } from "react";
 import PropTypes from "prop-types";
 
-const RemoveAnItem = ({ onDeleteItem, handleButtonState }) => {
-	const deleteLastItem = () => {
+const RemoveAnItem = ({ onDeleteItem, handleRemoveButton }) => {
+	const deleteLastItem = (event) => {
 		onDeleteItem();
 	};
 
 	return (
-		<button onClick={deleteLastItem} disabled={handleButtonState}>
+		<button onClick={deleteLastItem} disabled={handleRemoveButton}>
 			Delete Last Item
 		</button>
 	);
@@ -15,7 +15,7 @@ const RemoveAnItem = ({ onDeleteItem, handleButtonState }) => {
 
 RemoveAnItem.propTypes = {
 	onDeleteItem: PropTypes.func.isRequired,
-	handleButtonState: PropTypes.func.isRequired,
+	handleRemoveButton: PropTypes.func.isRequired,
 };
 
 export default RemoveAnItem;

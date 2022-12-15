@@ -8,22 +8,12 @@ import ItemsList from "./ItemsList";
 const App = () => {
 	const [items, setItems] = useState([]);
 
-	// const addItem = (event) => {
-	// 	event.preventDefault();
-	// 	// setItems([...items, value]);
-	// 	setValue("");
-	// };
-
-	// const deleteLastItem = (event) => {
-	// 	setItems(items.slice(0, -1));
-	// };
-
 	const handleAddItem = (item) => {
-		setItems(...items, item);
+		setItems([...items, item]);
 	};
 
 	const handleDeleteItem = () => {
-		setItems(...items.slice(0, -1));
+		setItems(items.slice(0, -1));
 	};
 
 	const noItemsFound = () => items.length === 0;
@@ -39,7 +29,7 @@ const App = () => {
 
 			<RemoveAnItem
 				onDeleteItem={handleDeleteItem}
-				handleButtonState={noItemsFound()}
+				handleRemoveButton={noItemsFound()}
 			/>
 
 			<p className="items">Items</p>
