@@ -3,22 +3,13 @@ import "./App.css";
 import { useState } from "react";
 import AddUser from "./AddUser";
 import UsersList from "./UsersList";
+import ToggleGamesCount from "./ToggleGamesCount";
 
 const App = () => {
 	const [users, setUsers] = useState([]);
 
 	const handleAddUser = (user) => {
 		setUsers([...users, user]);
-	};
-
-	const isUserExists = (existingUser) => {
-		const userExists = users
-			.filter((user) => user == existingUser)
-			.map((filteredUser) =>
-				alert(`${filteredUser.uname} already exists!`)
-			);
-
-		return userExists;
 	};
 
 	return (
@@ -28,7 +19,7 @@ const App = () => {
 				<h1 className="App-title">ReactND - Coding Practice</h1>
 			</header>
 
-			<AddUser addUser={handleAddUser} checkUser={isUserExists} />
+			<AddUser users={users} addUser={handleAddUser} />
 
 			<UsersList users={users} />
 		</div>

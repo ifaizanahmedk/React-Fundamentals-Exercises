@@ -1,66 +1,62 @@
 import { useState } from "react";
 import PropTypes from "prop-types";
 
-const AddUser = ({ addUser, checkUser }) => {
-	const [fname, setFname] = useState("");
-	const [lname, setLname] = useState("");
-	const [uname, setUname] = useState("");
-	const [gameCount, setGameCount] = useState(0);
+const AddUser = ({ users, addUser }) => {
+	const [user, setUser] = useState({
+		fname: "",
+		lname: "",
+		uname: "",
+		gamesCount: 0,
+	});
 
 	const handleOnChange = (event) => {
-		switch (event.target.name) {
-			case "fname":
-				setFname(event.target.value);
-				// console.log("event target", event.target.value);
-				// console.log("fname", fname);
-				break;
-
-			case "lname":
-				setLname(event.target.value);
-				// console.log("event target", event.target.value);
-				// console.log("lname", lname);
-				break;
-
-			case "uname":
-				setUname(event.target.value);
-				// console.log("event target", event.target.value);
-				// console.log("uname", uname);
-				break;
-		}
+		const { name, value } = event.target;
+		setUser({ ...user, [name]: value });
 	};
 
 	const addNewUser = (event) => {
 		event.preventDefault();
-		let user = { fname, lname, uname, gameCount };
-		addUser(user);
-		setFname("");
-		setLname("");
-		setUname("");
-		checkUser(user);
+		!isUserExists(user) && addUser(user);
+		console.log(user);
 	};
 
-	const isFormInComplete = () => fname === "" || lname === "" || uname === "";
+	const isUserExists = (user) => {
+		let userExist = false;
+		users
+			.filter((existingUser) => existingUser.uname == user.uname)
+			.map((filteredUser) => {
+				userExist = true;
+				alert(
+					`A user with the given username ('${filteredUser.uname}') already exists!`
+				);
+			});
+
+		return userExist;
+	};
+
+	const isFormInComplete = () =>
+		user.fname === "" || user.lname === "" || user.uname === "";
 
 	return (
 		<form onSubmit={addNewUser}>
 			<input
 				type="text"
 				placeholder="First Name"
-				value={fname}
+				value={user.fname}
 				onChange={handleOnChange}
 				name="fname"
 			/>
 			<input
 				type="text"
 				placeholder="Last Name"
-				value={lname}
+				value={user.lname}
 				onChange={handleOnChange}
 				name="lname"
 			/>
 			<input
 				type="text"
 				placeholder="username"
-				value={uname}
+				value={user.uname}
 				onChange={handleOnChange}
 				name="uname"
 			/>

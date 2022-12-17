@@ -1,7 +1,12 @@
 import PropTypes from "prop-types";
 
-const User = ({ user }) => {
-	return <li>{user.uname}</li>;
+const User = ({ user, isGameCountShown }) => {
+	return (
+		<li>
+			{user.uname} has played {isGameCountShown ? user.gamesCount : "*"}{" "}
+			games.
+		</li>
+	);
 };
 
 User.propTypes = {
