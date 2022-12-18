@@ -30,6 +30,7 @@ const AddUser = ({ users, addUser }) => {
 					`A user with the given username ('${filteredUser.uname}') already exists!`
 				);
 			});
+		gi;
 
 		return userExist;
 	};
