@@ -23,7 +23,7 @@ const AddUser = ({ users, addUser }) => {
 	const isUserExists = (user) => {
 		let userExist = false;
 		users
-			.filter((existingUser) => existingUser.uname == user.uname)
+			.filter((existingUser) => existingUser.uname === user.uname)
 			.map((filteredUser) => {
 				userExist = true;
 				alert(
